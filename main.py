@@ -56,14 +56,14 @@ class Page:
 
 class Utilities:
 
-    @classmethod
-    def normalize_price(cls, price):
+    @staticmethod
+    def normalize_price(price):
         numerical_price = round((int(price) / 100), 2)
         normalized_price = str(numerical_price).replace('.', ',') + ' р.'
         return normalized_price
 
-    @classmethod
-    def gap_check(cls, price, min_price, max_price):
+    @staticmethod
+    def gap_check(price, min_price, max_price):
         clean = price.replace(' ', '').replace(',', '.').replace('р.', '').strip()
         value = int(float(clean))
         if min_price is not None and max_price is not None:
@@ -152,7 +152,7 @@ class Onliner(Page):
     def get_soup(url):
         delay = random.uniform(0.5, 1.2)
         time.sleep(delay)
-        acquired = SEMAPHORE_KUFAR.acquire(timeout=5)
+        acquired = SEMAPHORE_ONLINER.acquire(timeout=5)
         if not acquired:
             logger.warning("Too many requests, please wait", url)
             return None
@@ -376,4 +376,5 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         server.server_close()
         exit()
+
 
