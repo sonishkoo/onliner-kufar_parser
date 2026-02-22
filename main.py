@@ -14,11 +14,6 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 print("START parser_service.py")
 
-PROXIES = {
-    'http': 'https://proxy.todes.by:9999',
-    'https': 'https://proxy.todes.by:9999',
-}
-
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Firefox/120.0"}
 onliner_url = 'https://baraholka.onliner.by/'
 kufar_api = 'https://api.kufar.by/search-api/v2/search/rendered-paginated'
@@ -381,3 +376,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         server.server_close()
         exit()
+
